@@ -41,7 +41,7 @@ public class ApplicationContextConfig {
 		Properties p = new Properties();
 		p.put("hibernate.show_sql", "true");
 		p.put("hibenate.dilect", "org.hibernate.dilect.H2Dilect");
-		p.put("hibernate.hbm2ddl.auto", "update");
+		p.put("hibernate.hbm2ddl.auto", "create");
 		return p;
 
 	}

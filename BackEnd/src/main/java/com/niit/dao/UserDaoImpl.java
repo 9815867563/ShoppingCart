@@ -39,17 +39,17 @@ public class UserDaoImpl implements UserDao {
 	 * else will return false
 	 */
 
-	public boolean save(User user) {
+	public User insert(User user) {
 		try
 		{
 		//sessionFactory.getCurrentSession().save(user);
-			sessionFactory.openSession().save(user);
+			sessionFactory.openSession().persist(user);
 		}catch (Exception e) {
 			//if any excpetion comes during execute of try block, catch will excute
 			e.printStackTrace();
-			return false;
+			
 		}
-		return true;
+		return user;
 	}
 	/**
 	 * This update method update record in the User table.

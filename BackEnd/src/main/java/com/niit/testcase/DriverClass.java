@@ -22,7 +22,9 @@ public class DriverClass {
 			user1.setMobile(1234);
 			
 			UserDao userDao=config.getBean(UserDaoImpl.class);
-			System.out.println(userDao.save(user1));
+		
+			System.out.println(userDao.insert(user1));
+			
 		
 			System.out.println("After");
 

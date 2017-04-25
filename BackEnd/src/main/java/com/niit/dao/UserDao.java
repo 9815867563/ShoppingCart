@@ -24,7 +24,7 @@ public interface UserDao {
 	
 	// create/register  - save
 	
-	public  boolean save(User user);
+	public  User insert(User user);
 	
 	// update the user details  - update
 	public boolean update(User user);

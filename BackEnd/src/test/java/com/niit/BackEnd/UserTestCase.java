@@ -52,7 +52,7 @@ public class UserTestCase {
 		user.setPassword("suveen");
 		user.setRole("ROLE_USER");
 		user.setMobile(9815);
-		boolean flag = userDao.save(user);
+		User flag = userDao.insert(user);
 		System.out.println("saved");
 		assertEquals("UserTestCase", true, flag);
 		// sa
