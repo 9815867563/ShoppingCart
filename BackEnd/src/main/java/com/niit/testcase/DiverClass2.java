@@ -1,12 +1,12 @@
 package com.niit.testcase;
-/*
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.niit.dao.UserDao;
-import com.niit.dao.UserDaoImpl;
-import com.niit.domain.User;
+import com.niit.dao.CategoryDao;
+import com.niit.domain.Category;
 
-public class DriverClass {
+
+public class DiverClass2 {
 
 	public static void main(String[] args) {
 		System.out.println("Before");
@@ -14,16 +14,15 @@ public class DriverClass {
 			config.scan("com.niit");
 			config.refresh();
 			
-			User user1=new User();
-			user1.setId("5");
-			user1.setName("ABC");
-			user1.setPassword("abc");
-			user1.setRole("ROLE_USER");
-			user1.setMobile(1234);
+			Category category1=new Category();
+			category1.setId("5");
+			category1.setName("ABC");
+			category1.setDescription("Clothing");
 			
-			UserDao userDao=(UserDao) config.getBean("userDao");
+			
+			CategoryDao categoryDao=(CategoryDao) config.getBean("CategoryDao");
 		
-			System.out.println(userDao.insert(user1));
+			System.out.println(categoryDao.insert(category1));
 			
 		
 			System.out.println("After");
@@ -31,4 +30,3 @@ public class DriverClass {
 	}
 
 }
-*/

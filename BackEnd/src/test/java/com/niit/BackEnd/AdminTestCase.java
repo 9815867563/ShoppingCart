@@ -7,23 +7,23 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.niit.dao.UserDao;
-import com.niit.dao.UserDaoImpl;
-import com.niit.domain.User;
+import com.niit.dao.AdminDao;
+import com.niit.dao.AdminDaoImpl;
+import com.niit.domain.Admin;
 
 /**
  * Unit test for simple App.
  */
-public class UserTestCase {
+public class AdminTestCase {
 
 	@Autowired
 	static AnnotationConfigApplicationContext context;
 
 	@Autowired
-	static UserDao userDao;
+	static AdminDao adminDao;
 
 	@Autowired
-	static User user;
+	static Admin admin;
 
 	// The above objects need to initialize
 	/**
@@ -36,25 +36,25 @@ public class UserTestCase {
 		context.scan("com.niit.*");
 		context.refresh();
 
-		// get the userDAO from context
-		// get the user from context
+		// get the AdminDAO from context
+		// get the Admin from context
 
-		userDao = (UserDao) context.getBean("userD");
+		adminDao = (AdminDao) context.getBean("adminD");
 		
-		user=context.getBean(User.class);
+		admin=context.getBean(Admin.class);
 
 	}
 
 	@Test
-	public void createUserTestCase() {
-		user.setId("8");
-		user.setName("Suveen Kumar");
-		user.setPassword("suveen");
-		user.setRole("ROLE_USER");
-		//user.setMobile(9815);
-		boolean flag = userDao.insert(user);
+	public void createAdminTestCase() {
+		admin.setId("8");
+		admin.setName("Suveen Kumar");
+		admin.setPassword("suveen");
+		admin.setRole("ROLE_Admin");
+		//Admin.setMobile(9815);
+		boolean flag = ( adminDao).insert(admin);
 		System.out.println("saved");
-		assertEquals("UserTestCase", true, flag);
+		assertEquals("AdminTestCase", true, flag);
 		// sa
 
 	}

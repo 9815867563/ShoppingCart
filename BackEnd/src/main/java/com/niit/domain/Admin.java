@@ -14,6 +14,14 @@ public class Admin {
 private String id;
 private String name;
 private String password;
+private String mobile;
+private  String role;
+public String getMobile() {
+	return mobile;
+}
+public void setMobile(String mobile) {
+	this.mobile = mobile;
+}
 public String getId() {
 	return id;
 }
@@ -37,13 +45,9 @@ public String getRole() {
 }
 public void setRole(String role) {
 	this.role = role;
+
+
 }
-public String getContact() {
-	return contact;
-}
-public void setContact(String contact) {
-	this.contact = contact;
-}
-private String role;
-private String contact;
+
+
 }

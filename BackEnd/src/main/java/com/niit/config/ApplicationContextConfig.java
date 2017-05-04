@@ -14,9 +14,11 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.dao.UserDao;
 import com.niit.dao.UserDaoImpl;
+import com.niit.domain.Category;
 import com.niit.domain.User;
 
 //import com.niit.dao.ProductDao;
@@ -25,9 +27,10 @@ import com.niit.domain.User;
 
 @Configuration
 @ComponentScan("com.niit")
+@EnableTransactionManagement
 public class ApplicationContextConfig {
 
-	@Bean
+	@Bean(name = "dataSource")
 	public DataSource getH2DataSource() {
 		BasicDataSource ds = new BasicDataSource();
 		ds.setDriverClassName("org.h2.Driver");
@@ -40,36 +43,36 @@ public class ApplicationContextConfig {
 	private Properties getHibernateProperties() {
 		Properties p = new Properties();
 		p.put("hibernate.show_sql", "true");
-		p.put("hibenate.dilect", "org.hibernate.dilect.H2Dilect");
-		p.put("hibernate.hbm2ddl.auto", "create");
+		p.put("hibenate.dialect", "org.hibernate.dialect.H2Dialect");
+		p.put("hibernate.hbm2ddl.auto", "update");
 		return p;
 
 	}
 
-	@Bean
+	@Autowired
+	@Bean(name = "sessionFactory")
 	public SessionFactory getSessionFactory(DataSource dataSource) {
-
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
 		sessionBuilder.addAnnotatedClass(User.class);
+		sessionBuilder.addAnnotatedClass(Category.class);
+		
 		sessionBuilder.addProperties(getHibernateProperties());
-
 		return sessionBuilder.buildSessionFactory();
 	}
 
-
-	@Bean
-	public HibernateTransactionManager transactionManager(SessionFactory sessionFactory) {
-		HibernateTransactionManager txManager = new HibernateTransactionManager();
-		txManager.setSessionFactory(sessionFactory);
-		return txManager;
-
-	}
-
 	@Autowired
-	@Bean(name = "userDao")
-	public UserDao getUserDao(SessionFactory sessionFactory) {
-		return new UserDaoImpl(sessionFactory);
+	@Bean(name="transactionManager")
+	public HibernateTransactionManager gettransactionManager(SessionFactory sessionFactory) {
+		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
+		transactionManager.setSessionFactory(sessionFactory);
+		return transactionManager;
+
 	}
+
+	// @Autowired
+	// @Bean(name = "userDao")
+	// public UserDao getUserDao(SessionFactory sessionFactory) {
+	// return new UserDaoImpl(sessionFactory);
+	// }
 
 }
-
